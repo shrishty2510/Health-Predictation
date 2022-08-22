@@ -5,7 +5,7 @@ from .models import Contactform
 
 
 def homepage(request):
-    return render(request,'core/home.html')
+    return render(request,'core/index.html')
 def aboutpage(request):
     return render(request,'core/about2.html')
 def gallerypage(request):
