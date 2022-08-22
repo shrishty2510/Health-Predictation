@@ -1,0 +1,67 @@
+{% extends "core/base.html" %}
+{% load static%}
+{% block content %}
+
+
+
+
+<section style="display:flex; flex-wrap:wrap; justify-content: center;">
+ 
+{% for form in fm %}
+  <div class="card m-3" style="min-width: 700px !important; min-height: 300px !important; box-shadow: 1px 1px 4px 1px rgba(127, 31, 191, 0.32); border: none;">
+    <div class="row">
+      <div class="col-sm-4">
+        <img class="d-block mt-4 center" width="200px" height="200px" src="{{form.image.url}}" alt="">
+       
+      </div>
+      <div class="col-sm-8">
+        <div class="card-block">
+          <h2 class='mt-3' style="text-align: left; color: #27063d;">Dr.{{form.user.first_name}} {{form.user.last_name}}</h2>
+          <table style="width: 100%; border:none; text-align: left;">
+            <tr>
+              <th>Specialist :</th>
+              <td>{{form.specialist}}</td>
+            </tr>
+            <tr>
+              <th>Age : </th>
+              <td>{{form.age}}</td>
+            </tr>
+            <tr>
+              <th>Application no. :</th>
+              <td>{{form.id}}</td>
+            </tr>
+            <tr>
+              <th>Contact : </th>
+              <td>{{form.contact}}</td>
+            </tr>
+            <tr>
+              <th>Contact : </th>
+              <td>{{form.contact}}</td>
+            </tr>
+            <tr>
+              <th>Visting Address :</th>
+              <td>{{form.address}}</td>
+            </tr>
+          </table>
+
+        </div>
+
+        <div  >
+         
+          <p class='text-right mt-4 mr-4'><a class="btn btn-lg" style="background-color: #27063d; color: #fff;" href="{% url 'appointment' form.id %}" role="button">
+              Book For Appointment </a>
+          </p>
+        </div>
+
+
+        
+      </div>
+    </div>
+
+  </div>
+  {% endfor%}
+
+
+</section>
+
+{% endblock %}

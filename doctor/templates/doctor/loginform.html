@@ -1,0 +1,75 @@
+{% extends "core/base.core.html" %}
+{% load static%}
+{% block content %}
+
+{% if messages %}
+{% for message in messages  %}
+<p {% if message.tags %} class='{{ message.tags}}' {% endif %}>{{message}}</p>
+{% endfor %}
+{% endif %}
+
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<!-- <form class="login100-form validate-form"> -->
+					<span class="login100-form-title p-b-26">
+						Login 
+					</span>
+                <form action="" method="POST" novalidate >
+                        {% csrf_token %}
+					<div class="wrap-input100  " style="    margin-bottom: 30px;">
+						<input class="input100" type="email" name='username' id="exampleInputEmail1" aria-describedby="emailHelp">
+						<span class="focus-input100" data-placeholder="Username/Email"></span>
+					</div>
+					
+
+					<div class="wrap-input100 " >
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input class="input100" type="password"  name='password' id="exampleInputPassword1">
+						<span class="focus-input100" data-placeholder="Password"></span>
+					</div>
+                    <div style="margin-left:9.5rem ;"><a href="{% url 'password_reset' %}" > Forgot password? </a></div>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								Login
+							</button>
+						</div>
+					</div>
+
+					<div class="text-center p-t-115">
+						<span class="txt1">
+							Don’t have an account?
+						</span>
+
+						<a class="txt2" href="{% url 'SignUp' %}">
+							Sign Up
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

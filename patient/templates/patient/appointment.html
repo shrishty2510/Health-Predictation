@@ -1,0 +1,80 @@
+{% extends "core/base.html" %}
+{% load static%}
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<p {% if message.tags %} class='{{ message.tags}}' {% endif %}> <i>{{message}}</i> </p>
+{% endfor %}
+{% endif %}
+
+<section>
+
+
+  <div class="row no-gutters">
+    <div class="container" style="box-shadow: 0 0px 10px rgb(0 0 0 / 15%);">
+      <div class="row">
+        <div class="col-lg-5 mt-5">
+          <div class="card-shadow">
+            <img
+              src="https://thumbs.dreamstime.com/b/book-your-medical-appointment-online-using-mobile-app-doctor-sitting-desk-background-wearing-face-mask-190595834.jpg"
+              style="height:540px;" class="img-fluid ">
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="contact-box ml-3">
+            <h1 class="font-weight-bold mt-5 " style="color:#27063d ;">Book To Appoinment</h1>
+            <form action="{% url 'appointment' pk %}" method="POST">
+              {% csrf_token %}
+              <form class="mt-4">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-group mt-2" style="text-align: left;">
+                      <label for="name">Full Name:</label>
+                      <input type="text" class="form-control" id="name" readonly
+                        value="{{username.first_name}} {{username.last_name}}" name="fullname">
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group mt-2" style="text-align: left;">
+                      <label for="pwd"><strong>Write your request</strong></label>
+                      <textarea rows="4" cols="50" name="message" class="form-control"
+                        placeholder="Enter text here"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group mt-2" style="text-align: left;">
+                      <label for="name"><strong>Email Address:</strong></label>
+                      <input type="email" class="form-control" id="img" name="email" value="{{username.email}}"
+                        required readonly>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group mt-2" style="text-align: left;">
+                      <label for="name"><strong>Contact No:</strong></label>
+                      <input type="text" class="form-control" id="name1" value="{{username.registrationform.contact}}"
+                        placeholder="Enter your contact no." name="contact" required>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+
+                    <button type="submit" class="btn  mt-3 text-white border-0 px-3 py-2 mb-3"
+                      style="background-color: #27063d;"><span>
+                        SUBMIT TO PROCEED</span></button>
+                  </div>
+                </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+</section>
+</main> -->
+
+
+
+{% endblock %}

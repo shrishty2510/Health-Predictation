@@ -1,0 +1,111 @@
+{% extends "core/base.core.html" %}
+{%load static %}
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<span {% if message.tags %} class='{{ message.tags}}' {% endif %}>{{message}}</span>
+{% endfor %}
+{% endif %}
+<div style="background-color:#fff;">
+
+<div class="contact3 py-5" >
+  <div class="row no-gutters">
+    <div class="container" style="box-shadow: 0 0px 10px rgb(0 0 0 / 15%);">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card-shadow">
+            <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/contact/2.jpg" class="img-fluid">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="contact-box ml-3" >
+            <h1 class="font-weight-bold mt-2"> Quick Contact</h1>
+            <form class="mt-4" action="" method="POST">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group mt-2">
+                    <input class="form-control" type="text" placeholder="name" name="name">
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group mt-2">
+                    <input class="form-control" type="email" placeholder="email address" name="email">
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group mt-2">
+                    <input class="form-control" type="text" placeholder="phone no." name="phone">
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group mt-2">
+                    <textarea class="form-control" rows="3" placeholder="message" name="message"></textarea>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <button type="submit" class="btn btn-danger-gradiant mt-3 text-white border-0 px-3 py-2" ><span style="color:#fff;"> SUBMIT</span></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="card mt-4 border-0 mb-4">
+            <div class="row">
+              <div class="col-lg-4 col-md-4">
+                <div class="card-body d-flex align-items-center c-detail pl-0">
+                  <div class="mr-3 align-self-center">
+                    <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/contact/icon1.png">
+                  </div>
+                  <div class="">
+                    <h6 class="font-weight-medium">Address</h6>
+                    <p class="">Vijay Nagar
+                      <br> Indore</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4">
+                <div class="card-body d-flex align-items-center c-detail">
+                  <div class="mr-3 align-self-center">
+                    <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/contact/icon2.png">
+                  </div>
+                  <div class="">
+                    <h6 class="font-weight-medium">Phone</h6>
+                    <p class="">+91 22-27782183
+                  </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4">
+                <div class="card-body d-flex align-items-center c-detail">
+                  <div class="mr-3 align-self-center">
+                    <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/contact/icon3.png">
+                  </div>
+                  <div class="">
+                    <h6 class="font-weight-medium">Email</h6>
+                    <p class="">
+                    support@helthcare.com
+                    
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14719.230492241071!2d75.900585791333!3d22.735390700975525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962e2b039622859%3A0xdd0df8d9fe32ec13!2sKhajrana%2C%20Indore%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1649608669666!5m2!1sen!2sin" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</div>
+</div>
+
+
+{% endblock %}

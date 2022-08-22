@@ -1,0 +1,188 @@
+{% extends "core/base.doctor.html" %}
+{% load static %}
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<p {% if message.tags %} class='{{ message.tags}}' {% endif %}>{{message}}</p>
+{% endfor %}
+{% endif %}
+
+
+<!--  -->
+<main>
+
+    <div class="container-fluid p-5">
+        <div class=" mb-5 text-center">
+            <h3 style="color:#4b2394; font-size:30px;text-transform:uppercase ;">
+                Manage appointments
+            </h3>
+        </div>
+        <div class="row">
+
+        {% for app in appointments %}
+            <div class="col-lg-4 col-xl-4 ">
+                <div class="card .w-100  card-margin"  style="border: none;border-radius: 30px;height: 250px; box-shadow: -2px 4px 16px -3px rgb(172 125 201);">
+                    <!-- <div class="card-header no-border">
+
+                        <h5 class="card-title" style="font-size:25px;">{{app.full_name}}</h5>
+                    </div> -->
+                    <div class="card-body py-4">
+                        <table style="width: 100%; border:none; text-align: left;">
+                            <tr>
+                              <th>Name :</th>
+                              <td>{{app.full_name}}</td>
+                            </tr>
+                            <tr>
+                              <th>Date : </th>
+                              <td>
+                                <div class="widget-49-date-primary">
+                                    <span style="color:grey;" class="widget-49-date-day">{{app.sent_date|date:"d"}} /</span>
+                                    <span style="color:grey;" class="widget-49-date-month">{{app.sent_date|date:"M"}} /</span>
+                                    <span style="color:grey;" class="widget-49-date-month">{{app.sent_date|date:"Y"}}</span>
+                                </div>
+
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>Email :</th>
+                              <td>{{app.email}}</td>
+                            </tr>
+                            <tr>
+                              <th>Contact: </th>
+                              <td>{{app.contact}}</td>
+                            </tr>
+                            <tr style="vertical-align: baseline;">
+                              <th>Problem: </th>
+                              <td>
+                                {{app.request}}
+                              </td>
+                            </tr>
+                            <tr>
+                                <td>
+                            <!-- <hr class="w-100"> -->
+
+                            </td>
+                            </tr>
+                          </table>
+                          <div class="card-footer text-muted" style="background-color: white;">
+                          {% if app.accepted == False %}
+                          <form style="margin-top:0; padding-top:0;" method="POST" action="{% url 'manage' %}">
+                          {% csrf_token %}
+                          <div style="display:flex; justify-content: space-between;margin-bottom:0;" class="form-group">
+                              <input style="width: 160px;"; type="date" name="date" class="form-control" 
+                                   value=""
+                                  min="01-01-2022" max="31-12-2022">
+                                  <input hidden="true" name="appointment-id" value="{{app.id}}">
+                              <input class="btn-block form-control" style="background-color:#4b2394; color:white; width: 100px; ;" type="submit" value="Accept">
+                          </div>
+                          </form>
+                          {% endif %}
+                          
+                            {% if app.accepted == True %}
+
+                            <input class="btn-block form-control" style="background-color:#2abe22; color:white; width: 300px; ;" type="submit" value="Appointment Accepted">
+          
+
+                           {% endif %}
+                          
+                          </div>
+
+
+
+
+
+                        <!-- <div class="widget-49">
+                            <div class="widget-49-title-wrapper">
+                                <div class="widget-49-date-primary">
+                                    <span style="color:grey;" class="widget-49-date-day">{{app.sent_date|date:"d"}} /</span>
+                                    <span style="color:grey;" class="widget-49-date-month">{{app.sent_date|date:"M"}} /</span>
+                                    <span style="color:grey;" class="widget-49-date-month">{{app.sent_date|date:"Y"}}</span>
+                                </div>
+                                <div class="widget-49-meeting-info">
+                                    <span class="widget-49-pro-title">{{app.email}}</span><br>
+                                    <span style="color:grey;" class="widget-49-meeting-time">{{app.contact}}</span>
+                                </div>
+                            </div>
+                            <div class="widget-49-meeting-points ">
+                                <span>{{app.request}}</span>
+                            </div>
+                            <hr class="w-100">
+                            {% if app.accepted == False %}
+                            <form method="POST" action="{% url 'manage' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="date" name="date" class="form-control" 
+                                     value=""
+                                    min="01-01-2022" max="31-12-2022">
+                                    <input hidden="true" name="appointment-id" value="{{app.id}}">
+                                <input class="btn-block form-control" style="background-color:#4b2394; color:white;" type="submit" value="Accept">
+                            </div>
+                            </form>
+                            {% endif %}
+                        </div> -->
+                    </div>
+                </div><br>
+            </div>
+        {% endfor %}
+
+        </div>
+</main>
+
+
+<!-- <main>
+
+    <div class="container-fluid p-5">
+        <div class=" mb-5 text-center">
+            <h3 style="color:#4b2394; font-size:30px;">
+                Manage appointments
+            </h3>
+        </div>
+        <div class="row">
+
+        {% for app in appointments %}
+            <div class="col-lg-4 col-xl-4 ">
+                <div class="card .w-100  card-margin"  style="border: 4px solid #4b2394; ">
+                    <div class="card-header no-border">
+
+                        <h5 class="card-title" style="font-size:25px;">{{app.full_name}}</h5>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="widget-49">
+                            <div class="widget-49-title-wrapper">
+                                <div class="widget-49-date-primary">
+                                    <span style="color:grey;" class="widget-49-date-day">{{app.sent_date|date:"d"}} /</span>
+                                    <span style="color:grey;" class="widget-49-date-month">{{app.sent_date|date:"M"}} /</span>
+                                    <span style="color:grey;" class="widget-49-date-month">{{app.sent_date|date:"Y"}}</span>
+                                </div>
+                                <div class="widget-49-meeting-info">
+                                    <span class="widget-49-pro-title">{{app.email}}</span><br>
+                                    <span style="color:grey;" class="widget-49-meeting-time">{{app.contact}}</span>
+                                </div>
+                            </div>
+                            <div class="widget-49-meeting-points ">
+                                <span>{{app.request}}</span>
+                            </div>
+                            <hr class="w-100">
+                            {% if app.accepted == False %}
+                            <form method="POST" action="{% url 'manage' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="date" name="date" class="form-control" 
+                                     value=""
+                                    min="01-01-2022" max="31-12-2022">
+                                    <input hidden="true" name="appointment-id" value="{{app.id}}">
+                                <input class="btn-block form-control" style="background-color:#4b2394; color:white;" type="submit" value="Accept">
+                            </div>
+                            </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div><br>
+            </div>
+        {% endfor %}
+
+        </div>
+</main> -->
+{% endblock %}
+

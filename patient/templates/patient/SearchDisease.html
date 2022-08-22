@@ -1,0 +1,70 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+<div class="inner-search pt-4" style="height:115vh; background-color: white;">
+  <form class="container mb-4" method="GET" id="form">
+    <div class="row">
+      <h4 class="col-12 mb-4"><strong>Select Symptomes</strong></h4>
+    </div>
+
+    <div class="form-group row sbtn">
+
+      <div class="col-10">
+        <select multiple name="symptomes" id="symptomes" class="filter-multi-select">
+          {% for i in data %}
+          <option value={{i}}>{{i}}</option>
+          {% endfor%}
+        </select>
+      </div>
+    </div>
+    <div class="sbtn">
+      <button class="submit mr-5 " type="submit" onclick="myFunction()">Submit</button>
+       <a href="{% url 'SearchDisease' %}" class="linksCss2"> <button type="button" class="btn btn-primary">Reset </button></a>
+      
+    </div>
+  </form>
+  <section class="userSection  ">
+    {% if prediction == null %}
+    <div style="margin-left:450px; ">
+      <img style="float:none !important;" src="{% static 'patient/img/s1.png' %}" alt="image">
+    </div>
+    {% endif %}
+
+    {% if prediction != null %}
+    <div class="row1-container">
+      <div class="box red">
+        <h2>Result:</h2>
+        <h3><strong>{{prediction}}</strong></h3>
+
+      </div>
+
+      <div class="box cyan " style="overflow: auto;">
+        <h2>Description:</h2>
+        <p style="color:black;"><strong> {{description}}</strong></p>
+
+      </div>
+
+      <div class="box blue">
+        <h2>Precautions:</h2>
+        {% for i in precaution %}
+        <p><strong>
+            <ul>
+              <li>{{i}}</li>
+            </ul>
+          </strong></p>
+        {% endfor %}
+
+
+      </div>
+    </div>
+    {% endif %}
+  </section>
+
+
+
+
+</div>
+
+
+
+{% endblock %}
